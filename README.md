@@ -3,11 +3,14 @@
 Solution to the SHL Research Engineer Kaggle challenge (*SHL Hiring Assessment 2026*): predict a continuous
 MOS grammar score (0–5) for 45–60 s speech clips. 769 training clips, 216 test clips, evaluated with Pearson correlation and RMSE.
 
-| | RMSE |
-|---|---|
-| 5-fold cross-validation (out-of-fold, test-length-weighted, nested stacker, mean of 5 stacker splits) | 0.501 |
-| Training data RMSE | see notebook §10 |
-| Kaggle public leaderboard | **0.3417** |
+| | Pearson | RMSE |
+|---|---|---|
+| 5-fold cross-validation (out-of-fold, test-length-weighted, nested stacker) | 0.854 | 0.499 (0.501 averaged over 5 stacker splits) |
+| Training data RMSE (final ensemble, all 732 training clips) | 0.872 | 0.496 |
+| Kaggle public leaderboard | | **0.3417** |
+
+The training RMSE is close to the CV RMSE because the stacker is fitted on the base models' out-of-fold predictions;
+the in-sample training RMSE of the individual refittable models (0.16–0.39) is reported in notebook §10.
 
 ## Approach
 
